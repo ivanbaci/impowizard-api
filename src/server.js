@@ -7,6 +7,7 @@ const jwt = require('express-jwt');
 const mongoose = require('mongoose');
 const routes = require('./routes');
 const config = require('./config');
+const errorMiddleware = require('./middleware/errorMiddleware');
 
 const {
   server: { PORT, JWT_SECRET },
@@ -35,6 +36,9 @@ boostrapApp = () => {
 
   // router config
   app.use(`/`, routes);
+
+  // global error handler
+  app.use(errorMiddleware);
 
   return app;
 };
