@@ -1,0 +1,10 @@
+@host = http://localhost:8080
+
+### Create new field type
+POST {{host}}/user/:userId/category HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Monotributista",
+  "code": "MONOTRIBUTO"
+}
