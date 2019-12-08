@@ -8,14 +8,10 @@ const create = user => {
 };
 
 const getByEmail = email => {
-  console.log('email');
-  console.log(email);
   return User.findOne({ email: email });
 };
 
 const getByUsername = username => {
-  console.log('username');
-  console.log(username);
   return User.findOne({ username: username });
 };
 
