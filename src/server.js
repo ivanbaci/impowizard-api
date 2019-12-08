@@ -8,6 +8,10 @@ const mongoose = require('mongoose');
 const routes = require('./routes');
 const config = require('./config');
 
+const {
+  server: { PORT, JWT_SECRET },
+} = config;
+
 boostrapApp = () => {
   const app = express();
 
