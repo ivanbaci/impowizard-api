@@ -15,8 +15,17 @@ const getByUsername = username => {
   return User.findOne({ username: username });
 };
 
+const login = async (username, password) => {
+  const user = await getByUsername(username);
+
+  if (!user) return false;
+  const match = await bcrypt.compare(password, user.password);
+  return match;
+};
+
 module.exports = {
   create,
   getByEmail,
   getByUsername,
+  login,
 };

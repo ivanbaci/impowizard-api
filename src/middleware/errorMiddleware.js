@@ -14,5 +14,12 @@ module.exports = (err, req, res, next) => {
       });
       break;
     }
+    case 'InvalidLogin': {
+      res.status(401).send({
+        code: 'invalid_login',
+        error: 'Invalid username or password',
+      });
+      break;
+    }
   }
 };
