@@ -2,6 +2,7 @@ const express = require('express');
 const Joi = require('@hapi/joi');
 const requestValidator = require('../helpers/requestValidator');
 const userController = require('../controllers/user');
+const { generateToken } = require('../helpers/tokenGenerator');
 
 const router = express.Router();
 
@@ -38,6 +39,40 @@ router.post(
     } catch (err) {
       console.log(err);
       res.status(500).send(err);
+    }
+  }
+);
+
+const loginSchema = Joi.object()
+  .keys({
+    username: Joi.string()
+      .max(20)
+      .required(),
+    password: Joi.string().required(),
+  })
+  .unknown(false);
+
+router.post(
+  '/login',
+  requestValidator.validateRequest(loginSchema),
+  async (req, res, next) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    try {
+      const matched = await userController.login(username, password);
+      if (!matched) return next({ name: 'InvalidLogin' });
+      let user = await userController.getByUsername(username);
+
+      const { email } = user;
+      user.password = undefined;
+
+      res.status(200).json({
+        user,
+        token: generateToken({ username, email }),
+      });
+    } catch (error) {
+      console.error(error);
+      res.send(error);
     }
   }
 );
