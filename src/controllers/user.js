@@ -23,9 +23,31 @@ const login = async (username, password) => {
   return match;
 };
 
+const updateFiscalCategory = async (userId, category) => {
+  User.findByIdAndUpdate(
+    userId,
+    { $set: { fiscalCategory: category } },
+    (err, user) => {
+      if (err) console.log(err);
+    }
+  );
+};
+
+const updateFiscalData = async (userId, fiscalData) => {
+  User.findByIdAndUpdate(
+    userId,
+    { $set: { fiscalData: fiscalData } },
+    (err, user) => {
+      if (err) console.log(err);
+    }
+  );
+};
+
 module.exports = {
   create,
   getByEmail,
   getByUsername,
   login,
+  updateFiscalCategory,
+  updateFiscalData,
 };
