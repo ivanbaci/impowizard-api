@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const MonotributistaDataSchema = new Schema({
   activity: {
     type: String,
-    enum: ['serviceProvision', 'productsSale'],
+    enum: ['SERVICE_PROVISION', 'PRODUCTS_SALE'],
     required: true,
   },
   location: {

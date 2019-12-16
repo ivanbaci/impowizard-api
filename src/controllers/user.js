@@ -43,6 +43,16 @@ const updateFiscalData = async (userId, fiscalData) => {
   );
 };
 
+const setMonotributistaData = async (userId, monotributistaDataId) => {
+  User.findByIdAndUpdate(
+    userId,
+    { $set: { monotributistaData: monotributistaDataId } },
+    (err, user) => {
+      if (err) console.log(err);
+    }
+  );
+};
+
 module.exports = {
   create,
   getByEmail,
@@ -50,4 +60,5 @@ module.exports = {
   login,
   updateFiscalCategory,
   updateFiscalData,
+  setMonotributistaData,
 };

@@ -70,9 +70,9 @@ router.post(
         user,
         token: generateToken({ username, email }),
       });
-    } catch (error) {
-      console.error(error);
-      res.send(error);
+    } catch (err) {
+      console.error(err);
+      res.send(err);
     }
   }
 );
