@@ -1,5 +1,20 @@
 @host = http://localhost:8080
 
+### Registration
+POST {{host}}/auth/register HTTP/1.1
+{
+	"email": "ivan@test.com",
+	"username": "ivanbaci",
+	"password": "1234"
+}
+
+### Login
+POST {{host}}/auth/login HTTP/1.1
+{
+	"username": "ivanbaci",
+	"password": "1234"
+}
+
 ### Create new field type
 POST {{host}}/user/:userId/category HTTP/1.1
 Content-Type: application/json

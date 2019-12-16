@@ -17,6 +17,25 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  fiscalData: {
+    name: {
+      type: String,
+    },
+    lastName: {
+      type: String,
+    },
+    cuit: {
+      type: String,
+    },
+  },
+  fiscalCategory: {
+    type: String,
+    enum: ['MONOTRIBUTISTA', 'REL_DEPENDENCIA'],
+  },
+  monotributistaData: {
+    type: Schema.Types.ObjectId,
+    ref: 'MonotributistaData',
+  },
 });
 
 module.exports = mongoose.model('User', UserSchema);
