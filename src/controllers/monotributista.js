@@ -1,5 +1,6 @@
 const MonotributistaData = require('../models/monotributistaData');
 const constants = require('../helpers/constants');
+const moment = require('moment');
 
 const create = async monotributistaData => {
   const monotributoCategory = getMonotributoCategory(monotributistaData);
@@ -137,8 +138,20 @@ const getMonotributoTaxValue = category => {
   }
 };
 
+const addBill = (id, bill) => {
+  bill.date = moment(bill.date, 'DD/MM/YYYY');
+  MonotributistaData.findByIdAndUpdate(
+    id,
+    { $push: { bills: bill } },
+    (err, data) => {
+      if (err) console.log(err);
+    }
+  );
+};
+
 module.exports = {
   create,
   getById,
   getTaxes,
+  addBill,
 };

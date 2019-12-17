@@ -52,6 +52,7 @@ router.get('/:id/tax-situation', async (req, res, next) => {
     const data = await monotributistaController.getById(
       user.monotributistaData
     );
+    delete data.bills;
     res.status(200).send(data);
   } catch (err) {
     console.log(err);
@@ -71,5 +72,29 @@ router.get('/:id/tax', async (req, res, next) => {
     res.status(500).send(err);
   }
 });
+
+const billSchema = Joi.object()
+  .keys({
+    date: Joi.string().required(),
+    value: Joi.number().required(),
+    title: Joi.string().required(),
+    description: Joi.string(),
+  })
+  .unknown(false);
+
+router.post(
+  '/:id/bill',
+  requestValidator.validateRequest(billSchema),
+  async (req, res, next) => {
+    try {
+      const user = await userController.getById(req.params.id);
+      await monotributistaController.addBill(user.monotributistaData, req.body);
+      res.status(201).send();
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+  }
+);
 
 module.exports = router;

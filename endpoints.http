@@ -78,3 +78,19 @@ POST {{host}}/monotributista/5ded569595e492394b6cbd1d
       "consumedEnergy": 0
     }
 }
+
+### Monotributista get tax situation
+GET {{host}}/monotributista/5ded569595e492394b6cbd1d/tax-situation
+
+### Monotributista get taxes
+GET {{host}}/monotributista/5ded569595e492394b6cbd1d/tax
+
+### Monotributista bill
+POST {{host}}/monotributista/5ded569595e492394b6cbd1d/bill
+{
+	"date": "20/10/2019",
+	"value": 300,
+	"title": "servicio",
+	"description": "nada"
+}
+
