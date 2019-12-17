@@ -7,6 +7,10 @@ const create = user => {
   User.create({ ...data, password: hashedPassword });
 };
 
+const getById = userId => {
+  return User.findById(userId);
+};
+
 const getByEmail = email => {
   return User.findOne({ email: email });
 };
@@ -43,11 +47,23 @@ const updateFiscalData = async (userId, fiscalData) => {
   );
 };
 
+const setMonotributistaData = async (userId, monotributistaDataId) => {
+  User.findByIdAndUpdate(
+    userId,
+    { $set: { monotributistaData: monotributistaDataId } },
+    (err, user) => {
+      if (err) console.log(err);
+    }
+  );
+};
+
 module.exports = {
   create,
+  getById,
   getByEmail,
   getByUsername,
   login,
   updateFiscalCategory,
   updateFiscalData,
+  setMonotributistaData,
 };

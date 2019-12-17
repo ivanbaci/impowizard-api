@@ -1,9 +1,113 @@
 const express = require('express');
 const Joi = require('@hapi/joi');
 const requestValidator = require('../helpers/requestValidator');
+const monotributistaController = require('../controllers/monotributista');
+const userController = require('../controllers/user');
 
 const router = express.Router();
 
-router.post('/fiscal-data');
+const monotributistaDataSchema = Joi.object()
+  .keys({
+    activity: Joi.string()
+      .valid('SERVICE_PROVISION', 'PRODUCTS_SALE')
+      .required(),
+    location: {
+      province: Joi.string().required(),
+      city: Joi.string().required(),
+    },
+    earnings: Joi.number().required(),
+    hasShop: Joi.boolean().required(),
+    shopDetails: {
+      quantity: Joi.number(),
+      area: Joi.number(),
+      paysRental: Joi.boolean(),
+      rentalValue: Joi.number(),
+      consumedEnergy: Joi.number(),
+    },
+  })
+  .unknown(false);
+
+router.post(
+  '/:userId',
+  requestValidator.validateRequest(monotributistaDataSchema),
+  async (req, res, next) => {
+    try {
+      const userId = req.params.userId;
+      const monotributistaData = req.body;
+      const monotributistaDataId = await monotributistaController.create(
+        monotributistaData
+      );
+      await userController.setMonotributistaData(userId, monotributistaDataId);
+      res.status(201).send();
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+  }
+);
+
+router.get('/:id/tax-situation', async (req, res, next) => {
+  try {
+    const user = await userController.getById(req.params.id);
+    const data = await monotributistaController.getById(
+      user.monotributistaData
+    );
+    delete data.bills;
+    res.status(200).send(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
+
+router.get('/:id/tax', async (req, res, next) => {
+  try {
+    const user = await userController.getById(req.params.id);
+    const taxes = await monotributistaController.getTaxes(
+      user.monotributistaData
+    );
+    res.status(200).send(taxes);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
+
+const billSchema = Joi.object()
+  .keys({
+    date: Joi.string().required(),
+    value: Joi.number().required(),
+    title: Joi.string().required(),
+    description: Joi.string(),
+  })
+  .unknown(false);
+
+router.post(
+  '/:id/bill',
+  requestValidator.validateRequest(billSchema),
+  async (req, res, next) => {
+    try {
+      const user = await userController.getById(req.params.id);
+      await monotributistaController.addBill(user.monotributistaData, req.body);
+      res.status(201).send();
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+  }
+);
+
+router.get('/:id/bill', async (req, res, next) => {
+  try {
+    const user = await userController.getById(req.params.id);
+    const bills = await monotributistaController.getAllBills(
+      user.monotributistaData
+    );
+    res.status(200).send(bills);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
 
 module.exports = router;

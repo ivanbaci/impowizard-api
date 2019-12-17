@@ -53,6 +53,4 @@ router.put(
   }
 );
 
-router.use('/:id/monotributista', require('./monotributista'));
-
 module.exports = router;

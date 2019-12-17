@@ -2,10 +2,28 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+const BillSchema = new Schema({
+  date: {
+    type: Date,
+    required: true,
+  },
+  value: {
+    type: Number,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+  },
+});
+
 const MonotributistaDataSchema = new Schema({
   activity: {
     type: String,
-    enum: ['serviceProvision', 'productsSale'],
+    enum: ['SERVICE_PROVISION', 'PRODUCTS_SALE'],
     required: true,
   },
   location: {
@@ -48,6 +66,7 @@ const MonotributistaDataSchema = new Schema({
     enum: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'],
     required: true,
   },
+  bills: [BillSchema],
 });
 
 module.exports = mongoose.model('MonotributistaData', MonotributistaDataSchema);

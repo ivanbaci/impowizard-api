@@ -2,6 +2,7 @@
 
 ### Registration
 POST {{host}}/auth/register HTTP/1.1
+Content-Type: application/json
 {
 	"email": "ivan@test.com",
 	"username": "ivanbaci",
@@ -10,16 +11,89 @@ POST {{host}}/auth/register HTTP/1.1
 
 ### Login
 POST {{host}}/auth/login HTTP/1.1
+Content-Type: application/json
 {
 	"username": "ivanbaci",
 	"password": "1234"
 }
 
-### Create new field type
-POST {{host}}/user/:userId/category HTTP/1.1
-Content-Type: application/json
 
+### Update category monotributista
+PUT {{host}}/user/5ded569595e492394b6cbd1d/category
 {
-  "name": "Monotributista",
-  "code": "MONOTRIBUTO"
+	"category": "MONOTRIBUTISTA"
 }
+
+### Update category rel dep
+PUT {{host}}/user/5ded569595e492394b6cbd1d/category
+{
+	"category": "REL_DEPENDENCIA"
+}
+
+
+### Update fiscal data
+PUT {{host}}/user/5ded569595e492394b6cbd1d/fiscal-data
+{
+	"fiscalData": {
+		"name": "Ivan",
+		"lastName": "Bacigaluppo",
+		"cuit": "20396448697"
+	}
+}
+
+### Monotributista data service provision
+POST {{host}}/monotributista/5ded569595e492394b6cbd1d
+{
+	"activity": "SERVICE_PROVISION",
+    "location": {
+      "province": "Buenos Aires",
+      "city": "La Plata"
+    },
+    "earnings": 138128,
+    "hasShop": false,
+    "shopDetails": {
+      "quantity": 0,
+      "area": 0,
+      "paysRental": false,
+      "rentalValue": 0,
+      "consumedEnergy": 0
+    }
+}
+
+### Monotributista data products sale
+POST {{host}}/monotributista/5ded569595e492394b6cbd1d
+{
+	"activity": "PRODUCTS_SALE",
+    "location": {
+      "province": "Buenos Aires",
+      "city": "La Plata"
+    },
+    "earnings": 138128,
+    "hasShop": false,
+    "shopDetails": {
+      "quantity": 0,
+      "area": 0,
+      "paysRental": false,
+      "rentalValue": 0,
+      "consumedEnergy": 0
+    }
+}
+
+### Monotributista get tax situation
+GET {{host}}/monotributista/5ded569595e492394b6cbd1d/tax-situation
+
+### Monotributista get taxes
+GET {{host}}/monotributista/5ded569595e492394b6cbd1d/tax
+
+### Monotributista bill
+POST {{host}}/monotributista/5ded569595e492394b6cbd1d/bill
+{
+	"date": "20/10/2019",
+	"value": 300,
+	"title": "servicio",
+	"description": "nada"
+}
+
+### Get all bills
+GET {{host}}/monotributista/5ded569595e492394b6cbd1d/bill
+
