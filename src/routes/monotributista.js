@@ -98,10 +98,18 @@ router.post(
 );
 
 router.get('/:id/bill', async (req, res, next) => {
+  const year = req.query.year;
+  if (!year) {
+    res.status(400).send({
+      code: 'invalid_year',
+      message: 'missing year',
+    });
+  }
   try {
     const user = await userController.getById(req.params.id);
-    const bills = await monotributistaController.getAllBills(
-      user.monotributistaData
+    const bills = await monotributistaController.getAllBillsByYear(
+      user.monotributistaData,
+      year
     );
     res.status(200).send(bills);
   } catch (err) {
