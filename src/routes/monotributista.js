@@ -98,11 +98,15 @@ router.post(
 );
 
 router.get('/:id/bill', async (req, res, next) => {
+  const year = req.query.year;
   try {
     const user = await userController.getById(req.params.id);
-    const bills = await monotributistaController.getAllBills(
-      user.monotributistaData
-    );
+    const bills = year
+      ? await monotributistaController.getAllBillsByYear(
+          user.monotributistaData,
+          year
+        )
+      : await monotributistaController.getAllBills(user.monotributistaData);
     res.status(200).send(bills);
   } catch (err) {
     console.log(err);
