@@ -94,3 +94,6 @@ POST {{host}}/monotributista/5ded569595e492394b6cbd1d/bill
 	"description": "nada"
 }
 
+### Get all bills
+GET {{host}}/monotributista/5ded569595e492394b6cbd1d/bill
+

@@ -149,9 +149,15 @@ const addBill = (id, bill) => {
   );
 };
 
+const getAllBills = async id => {
+  const monotributistaData = await MonotributistaData.findById(id);
+  return monotributistaData.bills;
+};
+
 module.exports = {
   create,
   getById,
   getTaxes,
   addBill,
+  getAllBills,
 };
