@@ -46,4 +46,17 @@ router.post(
   }
 );
 
+router.get('/:id/tax-situation', async (req, res, next) => {
+  try {
+    const user = await userController.getById(req.params.id);
+    const data = await monotributistaController.getById(
+      user.monotributistaData
+    );
+    res.status(200).send(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;

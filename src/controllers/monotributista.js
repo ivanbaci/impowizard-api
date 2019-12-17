@@ -89,6 +89,11 @@ const isCategoryH = (earnings, hasShop, shopDetails, activity, limits) => {
   return false;
 };
 
+const getById = id => {
+  return MonotributistaData.findById(id);
+};
+
 module.exports = {
   create,
+  getById,
 };

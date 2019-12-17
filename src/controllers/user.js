@@ -7,6 +7,10 @@ const create = user => {
   User.create({ ...data, password: hashedPassword });
 };
 
+const getById = userId => {
+  return User.findById(userId);
+};
+
 const getByEmail = email => {
   return User.findOne({ email: email });
 };
@@ -55,6 +59,7 @@ const setMonotributistaData = async (userId, monotributistaDataId) => {
 
 module.exports = {
   create,
+  getById,
   getByEmail,
   getByUsername,
   login,
