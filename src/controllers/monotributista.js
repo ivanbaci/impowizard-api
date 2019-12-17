@@ -93,7 +93,52 @@ const getById = id => {
   return MonotributistaData.findById(id);
 };
 
+const getTaxes = async id => {
+  const monotributistaData = await MonotributistaData.findById(id);
+  const monotributoValue = getMonotributoTaxValue(monotributistaData.category);
+  const taxes = {
+    bienesPersonales: {
+      value: 2562.32,
+      expirationDate: '25/06/2020',
+      paymentsExpired: 0,
+    },
+    monotributo: {
+      value: monotributoValue,
+      expirationDate: '20/12/2019',
+      paymentsExpired: 0,
+    },
+  };
+  return taxes;
+};
+
+const getMonotributoTaxValue = category => {
+  if (category === 'A') {
+    return constants.MONOTRIBUTO_VALUE.CATEGORY_A;
+  } else if (category === 'B') {
+    return constants.MONOTRIBUTO_VALUE.CATEGORY_B;
+  } else if (category === 'C') {
+    return constants.MONOTRIBUTO_VALUE.CATEGORY_C;
+  } else if (category === 'D') {
+    return constants.MONOTRIBUTO_VALUE.CATEGORY_D;
+  } else if (category === 'E') {
+    return constants.MONOTRIBUTO_VALUE.CATEGORY_E;
+  } else if (category === 'F') {
+    return constants.MONOTRIBUTO_VALUE.CATEGORY_F;
+  } else if (category === 'G') {
+    return constants.MONOTRIBUTO_VALUE.CATEGORY_G;
+  } else if (category === 'H') {
+    return constants.MONOTRIBUTO_VALUE.CATEGORY_H;
+  } else if (category === 'I') {
+    return constants.MONOTRIBUTO_VALUE.CATEGORY_I;
+  } else if (category === 'J') {
+    return constants.MONOTRIBUTO_VALUE.CATEGORY_J;
+  } else if (category === 'K') {
+    return constants.MONOTRIBUTO_VALUE.CATEGORY_K;
+  }
+};
+
 module.exports = {
   create,
   getById,
+  getTaxes,
 };
