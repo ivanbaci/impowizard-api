@@ -154,7 +154,7 @@ const getAllBills = async id => {
   return monotributistaData.bills;
 };
 
-const getAllBillsByYear = async (id, year) => {
+const getBillsByYear = async (id, year) => {
   const monotributistaData = await MonotributistaData.findById(id);
   return monotributistaData.bills.filter(
     bill => moment(bill.date).format('YYYY') === year
@@ -167,5 +167,5 @@ module.exports = {
   getTaxes,
   addBill,
   getAllBills,
-  getAllBillsByYear,
+  getBillsByYear,
 };

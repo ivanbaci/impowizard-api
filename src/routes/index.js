@@ -4,5 +4,6 @@ const router = express.Router();
 router.use('/auth', require('./auth'));
 router.use('/user', require('./user'));
 router.use('/monotributista', require('./monotributista'));
+router.use('/rel-dep', require('./relDep'));
 
 module.exports = router;

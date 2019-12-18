@@ -36,6 +36,10 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'MonotributistaData',
   },
+  relDepData: {
+    type: Schema.Types.ObjectId,
+    ref: 'RelDepData',
+  },
 });
 
 module.exports = mongoose.model('User', UserSchema);
