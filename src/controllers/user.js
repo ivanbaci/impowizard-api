@@ -57,6 +57,16 @@ const setMonotributistaData = async (userId, monotributistaDataId) => {
   );
 };
 
+const setRelDepData = async (userId, relDepDataId) => {
+  User.findByIdAndUpdate(
+    userId,
+    { $set: { relDepData: relDepDataId } },
+    (err, user) => {
+      if (err) console.log(err);
+    }
+  );
+};
+
 module.exports = {
   create,
   getById,
@@ -66,4 +76,5 @@ module.exports = {
   updateFiscalCategory,
   updateFiscalData,
   setMonotributistaData,
+  setRelDepData,
 };

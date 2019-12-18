@@ -28,11 +28,11 @@ const monotributistaDataSchema = Joi.object()
   .unknown(false);
 
 router.post(
-  '/:userId',
+  '/:id',
   requestValidator.validateRequest(monotributistaDataSchema),
   async (req, res, next) => {
     try {
-      const userId = req.params.userId;
+      const userId = req.params.id;
       const monotributistaData = req.body;
       const monotributistaDataId = await monotributistaController.create(
         monotributistaData
