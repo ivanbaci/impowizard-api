@@ -1,10 +1,13 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
+const emailSender = require('../helpers/emailSender');
 
 const create = user => {
+  console.log(user);
   const { password, ...data } = user;
   const hashedPassword = bcrypt.hashSync(password, 10);
   User.create({ ...data, password: hashedPassword });
+  emailSender.sendWelcomeEmail(user);
 };
 
 const getById = userId => {
