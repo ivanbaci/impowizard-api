@@ -73,4 +73,15 @@ router.get('/:id/receipt', async (req, res, next) => {
   }
 });
 
+router.get('/:id/tax', async (req, res, next) => {
+  try {
+    const user = await userController.getById(req.params.id);
+    const taxes = await relDepController.getTaxes(user.relDepData);
+    res.status(200).send(taxes);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;
