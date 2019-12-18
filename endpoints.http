@@ -95,5 +95,27 @@ POST {{host}}/monotributista/5ded569595e492394b6cbd1d/bill
 }
 
 ### Get all bills
-GET {{host}}/monotributista/5ded569595e492394b6cbd1d/bill
+GET {{host}}/monotributista/5ded569595e492394b6cbd1d/bill?year=2019
 
+### Post rel dep info
+POST {{host}}/rel-dep/5ded569595e492394b6cbd1d
+{
+	"salary": 3000000,
+	"isMarried": true,
+	"sonsQuantity": 2,
+	"paysRental": true,
+	"rentalValue": 7000
+}
+
+### Save receipt 
+POST {{host}}/rel-dep/5ded569595e492394b6cbd1d/receipt
+{
+	"date": "20/10/2019",
+	"value": 30000
+}
+
+### Get receipts
+GET {{host}}/rel-dep/5ded569595e492394b6cbd1d/receipt?year=2019
+
+### Get rel dep taxes
+GET {{host}}/rel-dep/5ded569595e492394b6cbd1d/tax
