@@ -102,7 +102,7 @@ router.get('/:id/bill', async (req, res, next) => {
   try {
     const user = await userController.getById(req.params.id);
     const bills = year
-      ? await monotributistaController.getAllBillsByYear(
+      ? await monotributistaController.getBillsByYear(
           user.monotributistaData,
           year
         )

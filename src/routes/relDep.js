@@ -37,4 +37,40 @@ router.post(
   }
 );
 
+const receiptSchema = Joi.object()
+  .keys({
+    date: Joi.string().required(),
+    value: Joi.number().required(),
+  })
+  .unknown(false);
+
+router.post(
+  '/:id/receipt',
+  requestValidator.validateRequest(receiptSchema),
+  async (req, res, next) => {
+    try {
+      const user = await userController.getById(req.params.id);
+      await relDepController.addReceipt(user.relDepData, req.body);
+      res.status(201).send();
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+  }
+);
+
+router.get('/:id/receipt', async (req, res, next) => {
+  const year = req.query.year;
+  try {
+    const user = await userController.getById(req.params.id);
+    const receipts = year
+      ? await relDepController.getReceiptsByYear(user.relDepData, year)
+      : await relDepController.getAllReceipts(user.relDepData);
+    res.status(200).send(receipts);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;
