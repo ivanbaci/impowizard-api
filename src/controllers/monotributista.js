@@ -204,8 +204,8 @@ const getById = id => {
 const getTaxes = async id => {
   const monotributistaData = await MonotributistaData.findById(id);
   const monotributoValue = getMonotributoTaxValue(monotributistaData.category);
-  const taxes = {
-    bienesPersonales: {
+  const taxes = [
+    {
       name: 'Bienes Personales',
       value: 2562.32,
       expirationDate: '17/02/2020',
@@ -213,7 +213,7 @@ const getTaxes = async id => {
       lastPaymentDate: '18/12/2019',
       status: 'enTermino',
     },
-    monotributo: {
+    {
       name: 'Monotributo',
       value: monotributoValue,
       expirationDate: '20/12/2019',
@@ -221,7 +221,7 @@ const getTaxes = async id => {
       lastPaymentDate: '19/11/2019',
       status: 'porVencer',
     },
-  };
+  ];
   return taxes;
 };
 
