@@ -46,7 +46,7 @@ const getTaxes = async id => {
       expirationDate: '15/02/2020',
       paymentsExpired: 0,
       lastPaymentDate: '16/12/2019',
-      status: 'EN TERMINO',
+      status: 'enTermino',
     },
     ganancias: {
       name: 'Ganancias',
@@ -54,7 +54,7 @@ const getTaxes = async id => {
       expirationDate: '02/01/2020',
       paymentsExpired: 0,
       lastPaymentDate: '02/12/2019',
-      status: 'EN TERMINO',
+      status: 'enTermino',
     },
     aportesSociales: {
       name: 'Aportes Sociales',
@@ -62,7 +62,7 @@ const getTaxes = async id => {
       expirationDate: '02/01/2020',
       paymentsExpired: 0,
       lastPaymentDate: '02/12/2019',
-      status: 'EN TERMINO',
+      status: 'enTermino',
       jubilacionValue: jubilacionValue,
       pamiValue: pamiValue,
       obraSocialValue: obraSocialValue,
