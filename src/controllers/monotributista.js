@@ -276,7 +276,6 @@ const deleteBill = (monotributistaDataId, billId) => {
     },
     (err, data) => {
       if (err) console.log(err);
-      console.log(data);
     }
   );
 };
