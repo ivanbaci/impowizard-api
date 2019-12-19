@@ -268,6 +268,19 @@ const getBillsByYear = async (id, year) => {
   );
 };
 
+const deleteBill = (monotributistaDataId, billId) => {
+  MonotributistaData.findByIdAndUpdate(
+    monotributistaDataId,
+    {
+      $pull: { bills: { _id: billId } },
+    },
+    (err, data) => {
+      if (err) console.log(err);
+      console.log(data);
+    }
+  );
+};
+
 module.exports = {
   create,
   getById,
@@ -276,4 +289,5 @@ module.exports = {
   addBill,
   getAllBills,
   getBillsByYear,
+  deleteBill,
 };

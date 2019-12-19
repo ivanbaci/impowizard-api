@@ -128,4 +128,18 @@ router.get('/:id/bill', async (req, res, next) => {
   }
 });
 
+router.delete('/:id/bill/:billId', async (req, res, next) => {
+  try {
+    const user = await userController.getById(req.params.id);
+    await monotributistaController.deleteBill(
+      user.monotributistaData,
+      req.params.billId
+    );
+    res.status(202).send();
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;
