@@ -82,6 +82,9 @@ POST {{host}}/monotributista/5ded569595e492394b6cbd1d
 ### Monotributista get tax situation
 GET {{host}}/monotributista/5ded569595e492394b6cbd1d/tax-situation
 
+### Monotributista get category limits
+GET {{host}}/monotributista/5ded569595e492394b6cbd1d/category-limits
+
 ### Monotributista get taxes
 GET {{host}}/monotributista/5ded569595e492394b6cbd1d/tax
 

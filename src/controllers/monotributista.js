@@ -140,6 +140,63 @@ const isCategoryH = (earnings, hasShop, shopDetails, activity, limits) => {
   return false;
 };
 
+const getCategoryLimits = async id => {
+  const monotributistaData = await getById(id);
+  if (monotributistaData.category === 'A') {
+    return calculateLimits(constants.CATEGORY_A_LIMITS);
+  } else if (monotributistaData.category === 'B') {
+    return calculateLimits(constants.CATEGORY_B_LIMITS);
+  } else if (monotributistaData.category === 'C') {
+    return calculateLimits(constants.CATEGORY_C_LIMITS);
+  } else if (monotributistaData.category === 'D') {
+    return calculateLimits(constants.CATEGORY_D_LIMITS);
+  } else if (monotributistaData.category === 'E') {
+    return calculateLimits(constants.CATEGORY_E_LIMITS);
+  } else if (monotributistaData.category === 'F') {
+    return calculateLimits(constants.CATEGORY_F_LIMITS);
+  } else if (monotributistaData.category === 'G') {
+    return calculateLimits(constants.CATEGORY_G_LIMITS);
+  } else if (monotributistaData.category === 'H') {
+    return calculateLimits(constants.CATEGORY_H_LIMITS);
+  } else if (monotributistaData.category === 'I') {
+    return calculateLimits(constants.CATEGORY_I_LIMITS);
+  } else if (monotributistaData.category === 'J') {
+    return calculateLimits(constants.CATEGORY_J_LIMITS);
+  } else if (monotributistaData.category === 'K') {
+    return calculateLimits(constants.CATEGORY_K_LIMITS);
+  }
+};
+
+const calculateLimits = limits => {
+  const biannualLimits = {};
+  for (var key in limits) {
+    if (limits.hasOwnProperty(key)) {
+      biannualLimits[key] = limits[key];
+    }
+  }
+
+  const monthLimits = {};
+  for (var key in limits) {
+    if (limits.hasOwnProperty(key)) {
+      monthLimits[key] = limits[key];
+    }
+  }
+  Object.freeze(limits);
+
+  Object.keys(biannualLimits).map(function(key, index) {
+    biannualLimits[key] = Number((biannualLimits[key] * 0.5).toFixed(2));
+  });
+
+  Object.keys(monthLimits).map(function(key, index) {
+    monthLimits[key] = Number((monthLimits[key] / 12).toFixed(2));
+  });
+  return {
+    anualLimits: limits,
+    biannualLimits: biannualLimits,
+    monthLimits: monthLimits,
+  };
+};
+
 const getById = id => {
   return MonotributistaData.findById(id);
 };
@@ -214,6 +271,7 @@ const getBillsByYear = async (id, year) => {
 module.exports = {
   create,
   getById,
+  getCategoryLimits,
   getTaxes,
   addBill,
   getAllBills,

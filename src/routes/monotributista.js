@@ -46,6 +46,20 @@ router.post(
   }
 );
 
+router.get('/:id/category-limits', async (req, res, next) => {
+  try {
+    const user = await userController.getById(req.params.id);
+    const categoryLimits = await monotributistaController.getCategoryLimits(
+      user.monotributistaData
+    );
+    console.log(categoryLimits);
+    res.status(200).send(categoryLimits);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
+
 router.get('/:id/tax-situation', async (req, res, next) => {
   try {
     const user = await userController.getById(req.params.id);
