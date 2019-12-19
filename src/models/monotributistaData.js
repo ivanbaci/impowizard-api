@@ -66,7 +66,7 @@ const MonotributistaDataSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'],
+    enum: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'NOT'],
     required: true,
   },
   nextCategory: {
