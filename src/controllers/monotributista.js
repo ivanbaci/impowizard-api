@@ -206,14 +206,20 @@ const getTaxes = async id => {
   const monotributoValue = getMonotributoTaxValue(monotributistaData.category);
   const taxes = {
     bienesPersonales: {
+      name: 'Bienes Personales',
       value: 2562.32,
-      expirationDate: '25/06/2020',
+      expirationDate: '17/02/2020',
       paymentsExpired: 0,
+      lastPaymentDate: '18/12/2019',
+      status: 'EN TERMINO',
     },
     monotributo: {
+      name: 'Monotributo',
       value: monotributoValue,
       expirationDate: '20/12/2019',
       paymentsExpired: 0,
+      lastPaymentDate: '19/11/2019',
+      status: 'POR VENCER',
     },
   };
   return taxes;

@@ -41,19 +41,28 @@ const getTaxes = async id => {
   } = getAportesSocialesTaxValue(relDepData.salary);
   const taxes = {
     bienesPersonales: {
+      name: 'Bienes Personales',
       value: 3481.27,
-      expirationDate: '25/06/2020',
+      expirationDate: '15/02/2020',
       paymentsExpired: 0,
+      lastPaymentDate: '16/12/2019',
+      status: 'EN TERMINO',
     },
     ganancias: {
+      name: 'Ganancias',
       value: gananciasValue,
-      expirationDate: '30/12/2019',
+      expirationDate: '02/01/2020',
       paymentsExpired: 0,
+      lastPaymentDate: '02/12/2019',
+      status: 'EN TERMINO',
     },
     aportesSociales: {
+      name: 'Aportes Sociales',
       value: aportesSocialesTotalValue,
-      expirationDate: '30/12/2019',
+      expirationDate: '02/01/2020',
       paymentsExpired: 0,
+      lastPaymentDate: '02/12/2019',
+      status: 'EN TERMINO',
       jubilacionValue: jubilacionValue,
       pamiValue: pamiValue,
       obraSocialValue: obraSocialValue,
