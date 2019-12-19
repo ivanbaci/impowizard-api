@@ -3,8 +3,15 @@ const constants = require('../helpers/constants');
 const moment = require('moment');
 
 const create = async monotributistaData => {
-  const monotributoCategory = getMonotributoCategory(monotributistaData);
+  const { monotributoCategory, nextCategory } = getMonotributoCategory(
+    monotributistaData
+  );
   monotributistaData.category = monotributoCategory;
+  if (monotributoCategory === 'NOT') {
+    monotributistaData.notMonotributista = true;
+  }
+  monotributistaData.nextCategory = nextCategory;
+  console.log(monotributistaData);
   const dataSaved = await MonotributistaData.create(monotributistaData);
   return dataSaved.id;
 };
@@ -16,31 +23,52 @@ const getMonotributoCategory = monotributistaData => {
   const shopDetails = monotributistaData.shopDetails;
 
   if (isCategory(earnings, hasShop, shopDetails, constants.CATEGORY_A_LIMITS)) {
-    return 'A';
+    return {
+      monotributoCategory: 'A',
+      nextCategory: 'B',
+    };
   } else if (
     isCategory(earnings, hasShop, shopDetails, constants.CATEGORY_B_LIMITS)
   ) {
-    return 'B';
+    return {
+      monotributoCategory: 'B',
+      nextCategory: 'C',
+    };
   } else if (
     isCategory(earnings, hasShop, shopDetails, constants.CATEGORY_C_LIMITS)
   ) {
-    return 'C';
+    return {
+      monotributoCategory: 'C',
+      nextCategory: 'D',
+    };
   } else if (
     isCategory(earnings, hasShop, shopDetails, constants.CATEGORY_D_LIMITS)
   ) {
-    return 'D';
+    return {
+      monotributoCategory: 'D',
+      nextCategory: 'E',
+    };
   } else if (
     isCategory(earnings, hasShop, shopDetails, constants.CATEGORY_E_LIMITS)
   ) {
-    return 'E';
+    return {
+      monotributoCategory: 'E',
+      nextCategory: 'F',
+    };
   } else if (
     isCategory(earnings, hasShop, shopDetails, constants.CATEGORY_F_LIMITS)
   ) {
-    return 'F';
+    return {
+      monotributoCategory: 'F',
+      nextCategory: 'G',
+    };
   } else if (
     isCategory(earnings, hasShop, shopDetails, constants.CATEGORY_G_LIMITS)
   ) {
-    return 'G';
+    return {
+      monotributoCategory: 'g',
+      nextCategory: 'F',
+    };
   } else if (
     isCategoryH(
       earnings,
@@ -50,21 +78,43 @@ const getMonotributoCategory = monotributistaData => {
       constants.CATEGORY_H_LIMITS
     )
   ) {
-    return 'H';
+    if (activity === 'SERVICE_PROVISION') {
+      return {
+        monotributoCategory: 'H',
+        nextCategory: 'NOT',
+      };
+    } else {
+      return {
+        monotributoCategory: 'H',
+        nextCategory: 'I',
+      };
+    }
   } else if (
     isCategory(earnings, hasShop, shopDetails, constants.CATEGORY_I_LIMITS)
   ) {
-    return 'I';
+    return {
+      monotributoCategory: 'I',
+      nextCategory: 'J',
+    };
   } else if (
     isCategory(earnings, hasShop, shopDetails, constants.CATEGORY_J_LIMITS)
   ) {
-    return 'J';
+    return {
+      monotributoCategory: 'J',
+      nextCategory: 'K',
+    };
   } else if (
     isCategory(earnings, hasShop, shopDetails, constants.CATEGORY_K_LIMITS)
   ) {
-    return 'K';
+    return {
+      monotributoCategory: 'K',
+      nextCategory: 'NOT',
+    };
   } else {
-    return 'No category';
+    return {
+      monotributoCategory: 'NOT',
+      nextCategory: 'NOT',
+    };
   }
 };
 

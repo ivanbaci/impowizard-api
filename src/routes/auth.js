@@ -31,7 +31,7 @@ router.post(
       } else if (await userController.getByEmail(req.body.email)) {
         return next({
           name: 'InvalidEmail',
-          description: 'An admin user with that email already exists.',
+          description: 'A user with that email already exists.',
         });
       }
       await userController.create(req.body);

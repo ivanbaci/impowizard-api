@@ -14,6 +14,12 @@ const getById = userId => {
   return User.findById(userId);
 };
 
+const checkExistingUser = async (req, res, next) => {
+  if (!(await User.findById(req.params.id))) {
+    next('InvalidUser');
+  }
+};
+
 const getByEmail = email => {
   return User.findOne({ email: email });
 };
@@ -73,6 +79,7 @@ const setRelDepData = async (userId, relDepDataId) => {
 module.exports = {
   create,
   getById,
+  checkExistingUser,
   getByEmail,
   getByUsername,
   login,

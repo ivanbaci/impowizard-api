@@ -21,5 +21,11 @@ module.exports = (err, req, res, next) => {
       });
       break;
     }
+    case 'InvalidUser': {
+      res.status(400).send({
+        code: 'invalid_userId',
+        error: 'The user does not exist',
+      });
+    }
   }
 };
