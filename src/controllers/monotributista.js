@@ -216,9 +216,9 @@ const getTaxes = async id => {
     {
       name: 'Monotributo',
       value: monotributoValue,
-      expirationDate: '20/12/2019',
+      expirationDate: '20/02/2020',
       paymentsExpired: 0,
-      lastPaymentDate: '19/11/2019',
+      lastPaymentDate: '19/01/2020',
       status: 'porVencer',
     },
   ];

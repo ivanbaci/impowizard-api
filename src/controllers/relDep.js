@@ -51,17 +51,17 @@ const getTaxes = async id => {
     {
       name: 'Ganancias',
       value: gananciasValue,
-      expirationDate: '02/01/2020',
+      expirationDate: '02/03/2020',
       paymentsExpired: 0,
-      lastPaymentDate: '02/12/2019',
+      lastPaymentDate: '02/02/2019',
       status: 'enTermino',
     },
     {
       name: 'Aportes Sociales',
       value: aportesSocialesTotalValue,
-      expirationDate: '02/01/2020',
+      expirationDate: '02/03/2020',
       paymentsExpired: 0,
-      lastPaymentDate: '02/12/2019',
+      lastPaymentDate: '02/02/2019',
       status: 'enTermino',
       jubilacionValue: jubilacionValue,
       pamiValue: pamiValue,
@@ -72,12 +72,14 @@ const getTaxes = async id => {
 };
 
 const getGananciasTaxValue = relDepData => {
-  if (relDepData.salary < 47584) {
+  if (relDepData.salary < 55261) {
+    return 0;
+  } else if (relDepData.isMarried && relDepData.salary < 64145) {
     return 0;
   } else if (
     relDepData.isMarried &&
     relDepData.sonsQuantity >= 2 &&
-    relDepData.salary < 61046
+    relDepData.salary < 73104
   ) {
     return 0;
   }
