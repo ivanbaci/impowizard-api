@@ -210,7 +210,7 @@ const getTaxes = async id => {
   const taxes = [
     {
       name: 'Bienes Personales',
-      value: 2562.32,
+      value: 3262.32,
       expirationDate: '17/02/2020',
       paymentsExpired: 0,
       lastPaymentDate: '18/12/2019',
