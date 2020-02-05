@@ -89,25 +89,24 @@ const getGananciasTaxValue = relDepData => {
 const getGananciaValueFromGananciaNeta = relDepData => {
   const totalDeductValue = calculateDeducts(relDepData);
   const gananciaNetaImponible = relDepData.salary - totalDeductValue;
-  console.log(gananciaNetaImponible);
-  if (gananciaNetaImponible < 2753.32) {
+  if (gananciaNetaImponible < 3975) {
     return 0;
-  } else if (gananciaNetaImponible < 5506.63) {
-    return 137.67 + (gananciaNetaImponible - 2753.32) * 0.09;
-  } else if (gananciaNetaImponible < 8259.95) {
-    return 385.46 + (gananciaNetaImponible - 5506.63) * 0.12;
-  } else if (gananciaNetaImponible < 11013.27) {
-    return 715.86 + (gananciaNetaImponible - 8259.95) * 0.15;
-  } else if (gananciaNetaImponible < 16519.9) {
-    return 1128.86 + (gananciaNetaImponible - 11013.27) * 0.19;
-  } else if (gananciaNetaImponible < 22026.54) {
-    return 2175.12 + (gananciaNetaImponible - 16519.9) * 0.23;
-  } else if (gananciaNetaImponible < 33039.81) {
-    return 3441.65 + (gananciaNetaImponible - 22026.54) * 0.27;
-  } else if (gananciaNetaImponible < 44053.08) {
-    return 6415.23 + (gananciaNetaImponible - 33039.81) * 0.31;
+  } else if (gananciaNetaImponible < 7944.86) {
+    return 198.63 + (gananciaNetaImponible - 3975) * 0.09;
+  } else if (gananciaNetaImponible < 11917.29) {
+    return 556.14 + (gananciaNetaImponible - 7944.86) * 0.12;
+  } else if (gananciaNetaImponible < 15889.72) {
+    return 1032.83 + (gananciaNetaImponible - 11917.29) * 0.15;
+  } else if (gananciaNetaImponible < 23909.58) {
+    return 1628.7 + (gananciaNetaImponible - 15889.72) * 0.19;
+  } else if (gananciaNetaImponible < 31779.44) {
+    return 3138.22 + (gananciaNetaImponible - 23909.58) * 0.23;
+  } else if (gananciaNetaImponible < 47669.16) {
+    return 4965.54 + (gananciaNetaImponible - 31779.44) * 0.27;
+  } else if (gananciaNetaImponible < 63558.88) {
+    return 9255.76 + (gananciaNetaImponible - 47669.16) * 0.31;
   } else {
-    return 9829.34 + (gananciaNetaImponible - 44053.08) * 0.35;
+    return 14181.58 + (gananciaNetaImponible - 63558.88) * 0.35;
   }
 };
 
@@ -131,17 +130,17 @@ const getAportesSocialesTaxValue = salary => {
 
 const getPersonalDeducts = relDepData => {
   return (
-    7154 +
-    34339.5 +
-    3363.4 * relDepData.sonsQuantity +
-    (relDepData.isMarried ? 6669.5 : 0)
+    10321.1 +
+    49541.59 +
+    4852.37 * relDepData.sonsQuantity +
+    (relDepData.isMarried ? 9622.1 : 0)
   );
 };
 
 const getPermittedDeducts = relDepData => {
   if (relDepData.paysRental) {
-    return relDepData.rentalValue * 0.4 > 7154
-      ? 7154
+    return relDepData.rentalValue * 0.4 > 10321.1
+      ? 10321.1
       : relDepData.rentalValue * 0.4;
   }
   return 0;
