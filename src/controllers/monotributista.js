@@ -203,7 +203,10 @@ const getById = id => {
 
 const getTaxes = async id => {
   const monotributistaData = await MonotributistaData.findById(id);
-  const monotributoValue = getMonotributoTaxValue(monotributistaData.category);
+  const monotributoValue =
+    monotributistaData.activity === 'SERVICE_PROVISION'
+      ? getMonotributoServiceTaxValue(monotributistaData.category)
+      : getMonotributoProductsSaleTaxValue(monotributistaData.category);
   const taxes = [
     {
       name: 'Bienes Personales',
@@ -225,29 +228,49 @@ const getTaxes = async id => {
   return taxes;
 };
 
-const getMonotributoTaxValue = category => {
+const getMonotributoServiceTaxValue = category => {
   if (category === 'A') {
-    return constants.MONOTRIBUTO_VALUE.CATEGORY_A;
+    return constants.MONOTRIBUTO_SERVICE_VALUE.CATEGORY_A;
   } else if (category === 'B') {
-    return constants.MONOTRIBUTO_VALUE.CATEGORY_B;
+    return constants.MONOTRIBUTO_SERVICE_VALUE.CATEGORY_B;
   } else if (category === 'C') {
-    return constants.MONOTRIBUTO_VALUE.CATEGORY_C;
+    return constants.MONOTRIBUTO_SERVICE_VALUE.CATEGORY_C;
   } else if (category === 'D') {
-    return constants.MONOTRIBUTO_VALUE.CATEGORY_D;
+    return constants.MONOTRIBUTO_SERVICE_VALUE.CATEGORY_D;
   } else if (category === 'E') {
-    return constants.MONOTRIBUTO_VALUE.CATEGORY_E;
+    return constants.MONOTRIBUTO_SERVICE_VALUE.CATEGORY_E;
   } else if (category === 'F') {
-    return constants.MONOTRIBUTO_VALUE.CATEGORY_F;
+    return constants.MONOTRIBUTO_SERVICE_VALUE.CATEGORY_F;
   } else if (category === 'G') {
-    return constants.MONOTRIBUTO_VALUE.CATEGORY_G;
+    return constants.MONOTRIBUTO_SERVICE_VALUE.CATEGORY_G;
   } else if (category === 'H') {
-    return constants.MONOTRIBUTO_VALUE.CATEGORY_H;
+    return constants.MONOTRIBUTO_SERVICE_VALUE.CATEGORY_H;
+  }
+};
+
+const getMonotributoProductsSaleTaxValue = category => {
+  if (category === 'A') {
+    return constants.MONOTRIBUTO_PRODUCTS_SALE_VALUE.CATEGORY_A;
+  } else if (category === 'B') {
+    return constants.MONOTRIBUTO_PRODUCTS_SALE_VALUE.CATEGORY_B;
+  } else if (category === 'C') {
+    return constants.MONOTRIBUTO_PRODUCTS_SALE_VALUE.CATEGORY_C;
+  } else if (category === 'D') {
+    return constants.MONOTRIBUTO_PRODUCTS_SALE_VALUE.CATEGORY_D;
+  } else if (category === 'E') {
+    return constants.MONOTRIBUTO_PRODUCTS_SALE_VALUE.CATEGORY_E;
+  } else if (category === 'F') {
+    return constants.MONOTRIBUTO_PRODUCTS_SALE_VALUE.CATEGORY_F;
+  } else if (category === 'G') {
+    return constants.MONOTRIBUTO_PRODUCTS_SALE_VALUE.CATEGORY_G;
+  } else if (category === 'H') {
+    return constants.MONOTRIBUTO_PRODUCTS_SALE_VALUE.CATEGORY_H;
   } else if (category === 'I') {
-    return constants.MONOTRIBUTO_VALUE.CATEGORY_I;
+    return constants.MONOTRIBUTO_PRODUCTS_SALE_VALUE.CATEGORY_I;
   } else if (category === 'J') {
-    return constants.MONOTRIBUTO_VALUE.CATEGORY_J;
+    return constants.MONOTRIBUTO_PRODUCTS_SALE_VALUE.CATEGORY_J;
   } else if (category === 'K') {
-    return constants.MONOTRIBUTO_VALUE.CATEGORY_K;
+    return constants.MONOTRIBUTO_PRODUCTS_SALE_VALUE.CATEGORY_K;
   }
 };
 

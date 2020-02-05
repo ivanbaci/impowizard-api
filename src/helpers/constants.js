@@ -1,92 +1,103 @@
 const CATEGORY_A_LIMITS = {
-  earnings: 138127.99,
+  earnings: 208739.25,
   area: 30,
   energy: 3330,
-  rental: 51798,
+  rental: 78277.23,
 };
 
 const CATEGORY_B_LIMITS = {
-  earnings: 207191.98,
+  earnings: 313108.87,
   area: 45,
   energy: 5000,
-  rental: 51798,
+  rental: 78277.23,
 };
 
 const CATEGORY_C_LIMITS = {
-  earnings: 276255.98,
+  earnings: 417478.51,
   area: 60,
   energy: 6700,
-  rental: 103595.99,
+  rental: 156554.44,
 };
 
 const CATEGORY_D_LIMITS = {
-  earnings: 414383.98,
+  earnings: 626217.78,
   area: 85,
   energy: 10000,
-  rental: 103595.99,
+  rental: 156554.44,
 };
 
 const CATEGORY_E_LIMITS = {
-  earnings: 552511.95,
+  earnings: 834957,
   area: 110,
   energy: 13000,
-  rental: 129083.89,
+  rental: 195071.79,
 };
 
 const CATEGORY_F_LIMITS = {
-  earnings: 690639.95,
+  earnings: 1043696.27,
   area: 150,
   energy: 16500,
-  rental: 129494.98,
+  rental: 195693.03,
 };
 
 const CATEGORY_G_LIMITS = {
-  earnings: 828767.94,
+  earnings: 1252435.53,
   area: 200,
   energy: 20000,
-  rental: 155393.99,
+  rental: 234831.66,
 };
 
 const CATEGORY_H_LIMITS = {
-  earnings: 1151066.58,
+  earnings: 1739493.79,
   area: 200,
   energy: 20000,
-  rental: 207191.98,
+  rental: 313108.87,
 };
 
 const CATEGORY_I_LIMITS = {
-  earnings: 1352503.24,
+  earnings: 2043905.21,
   area: 200,
   energy: 20000,
-  rental: 207191.98,
+  rental: 313108.87,
 };
 
 const CATEGORY_J_LIMITS = {
-  earnings: 1553939.89,
+  earnings: 2348316.62,
   area: 200,
   energy: 20000,
-  rental: 207191.98,
+  rental: 313108.87,
 };
 
 const CATEGORY_K_LIMITS = {
-  earnings: 1726599.88,
+  earnings: 2609240.69,
   area: 200,
   energy: 20000,
-  rental: 207191.98,
+  rental: 313108.87,
 };
 
-const MONOTRIBUTO_VALUE = {
-  CATEGORY_A: 1294.12,
-  CATEGORY_B: 1447.06,
-  CATEGORY_C: 1626.29,
-  CATEGORY_D: 1904.69,
-  CATEGORY_E: 2304.15,
-  CATEGORY_F: 2649.34,
-  CATEGORY_G: 3016.55,
-  CATEGORY_H: 5218.63,
-  CATEGORY_I: 7501.79,
-  CATEGORY_J: 8615.55,
-  CATEGORY_K: 9738.22,
+const MONOTRIBUTO_SERVICE_VALUE = {
+  CATEGORY_A: 1955.68,
+  CATEGORY_B: 2186.8,
+  CATEGORY_C: 2499.91,
+  CATEGORY_D: 2947.94,
+  CATEGORY_E: 3872.18,
+  CATEGORY_F: 4634.89,
+  CATEGORY_G: 5406.02,
+  CATEGORY_H: 9451.93,
+};
+
+const MONOTRIBUTO_PRODUCTS_SALE_VALUE = {
+  CATEGORY_A: 1955.68,
+  CATEGORY_B: 2186.8,
+  CATEGORY_C: 2457.65,
+  CATEGORY_D: 2878.37,
+  CATEGORY_E: 3482.04,
+  CATEGORY_F: 4003.69,
+  CATEGORY_G: 4558.61,
+  CATEGORY_H: 7886.41,
+  CATEGORY_I: 11336.71,
+  CATEGORY_J: 13019.83,
+  CATEGORY_K: 14716.41,
 };
 
 module.exports = {
@@ -101,5 +112,6 @@ module.exports = {
   CATEGORY_I_LIMITS: CATEGORY_I_LIMITS,
   CATEGORY_J_LIMITS: CATEGORY_J_LIMITS,
   CATEGORY_K_LIMITS: CATEGORY_K_LIMITS,
-  MONOTRIBUTO_VALUE: MONOTRIBUTO_VALUE,
+  MONOTRIBUTO_SERVICE_VALUE: MONOTRIBUTO_SERVICE_VALUE,
+  MONOTRIBUTO_PRODUCTS_SALE_VALUE: MONOTRIBUTO_PRODUCTS_SALE_VALUE,
 };
