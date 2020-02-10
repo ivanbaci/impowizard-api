@@ -28,7 +28,7 @@ const update = async (id, newData) => {
   }
   const newMonotributistaData = await getById(id);
   const category = getMonotributoCategory(newMonotributistaData);
-  if (category !== newMonotributistaData.category) {
+  if (category.monotributoCategory !== newMonotributistaData.category) {
     return true;
   }
   return false;
