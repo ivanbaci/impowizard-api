@@ -11,9 +11,67 @@ const create = async monotributistaData => {
     monotributistaData.notMonotributista = true;
   }
   monotributistaData.nextCategory = nextCategory;
-  console.log(monotributistaData);
   const dataSaved = await MonotributistaData.create(monotributistaData);
   return dataSaved.id;
+};
+
+const update = async (id, newData) => {
+  const monotributistaData = await getById(id);
+  if (newData.earnings) {
+    await updateEarnings(id, newData.earnings);
+  }
+  if (monotributistaData.hasShop && newData.shopDetails) {
+    const { shopDetails: newShopDetails } = newData;
+    const { shopDetails: oldShopDetails } = monotributistaData;
+
+    await updateShopDetails(id, newShopDetails, oldShopDetails);
+  }
+  const newMonotributistaData = await getById(id);
+  const category = getMonotributoCategory(newMonotributistaData);
+  if (category !== newMonotributistaData.category) {
+    return true;
+  }
+  return false;
+};
+
+const updateEarnings = (id, newEarnings) => {
+  MonotributistaData.findByIdAndUpdate(
+    id,
+    { $set: { earnings: newEarnings } },
+    (err, data) => {
+      if (err) console.log(err);
+    }
+  );
+};
+
+const updateShopDetails = (id, newShopDetails, shopDetails) => {
+  const quantity = newShopDetails.quantity
+    ? newShopDetails.quantity
+    : shopDetails.quantity;
+  const area = newShopDetails.area ? newShopDetails.area : shopDetails.area;
+  const paysRental = newShopDetails.paysRental
+    ? newShopDetails.paysRental
+    : shopDetails.paysRental;
+  const rentalValue = newShopDetails.rentalValue
+    ? newShopDetails.rentalValue
+    : shopDetails.rentalValue;
+  const consumedEnergy = newShopDetails.consumedEnergy
+    ? newShopDetails.consumedEnergy
+    : shopDetails.consumedEnergy;
+  const updatedShopDetails = {
+    quantity,
+    area,
+    paysRental,
+    rentalValue,
+    consumedEnergy,
+  };
+  MonotributistaData.findByIdAndUpdate(
+    id,
+    { $set: { shopDetails: updatedShopDetails } },
+    (err, data) => {
+      if (err) console.log(err);
+    }
+  );
 };
 
 const getMonotributoCategory = monotributistaData => {
@@ -311,6 +369,7 @@ const deleteBill = (monotributistaDataId, billId) => {
 
 module.exports = {
   create,
+  update,
   getById,
   getCategoryLimits,
   getTaxes,

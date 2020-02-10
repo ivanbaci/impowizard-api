@@ -46,13 +46,27 @@ router.post(
   }
 );
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const monotributistaDataId = req.params.id;
+    const newMonotributistaData = req.body;
+    const shouldRecategorize = await monotributistaController.update(
+      monotributistaDataId,
+      newMonotributistaData
+    );
+    res.status(200).send({ shouldRecategorize: shouldRecategorize });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
+
 router.get('/:id/category-limits', async (req, res, next) => {
   try {
     const user = await userController.getById(req.params.id);
     const categoryLimits = await monotributistaController.getCategoryLimits(
       user.monotributistaData
     );
-    console.log(categoryLimits);
     res.status(200).send(categoryLimits);
   } catch (err) {
     console.log(err);
