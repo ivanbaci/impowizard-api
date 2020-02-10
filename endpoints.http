@@ -79,6 +79,20 @@ POST {{host}}/monotributista/5ded569595e492394b6cbd1d
     }
 }
 
+### Monotributista data update 
+PUT {{host}}/monotributista/5ded569595e492394b6cbd1d
+{
+    "earnings": 120000,
+    "hasShop": true,
+    "shopDetails": {
+      "quantity": 2,
+      "area": 10,
+      "paysRental": false,
+      "rentalValue": 0,
+      "consumedEnergy": 0
+    }
+}
+
 ### Monotributista get tax situation
 GET {{host}}/monotributista/5ded569595e492394b6cbd1d/tax-situation
 
