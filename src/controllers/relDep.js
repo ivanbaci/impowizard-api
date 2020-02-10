@@ -46,7 +46,7 @@ const getTaxes = async id => {
       expirationDate: '15/02/2020',
       paymentsExpired: 0,
       lastPaymentDate: '16/12/2019',
-      status: 'enTermino',
+      status: 'porVencer',
     },
     {
       name: 'Ganancias',

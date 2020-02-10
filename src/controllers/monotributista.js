@@ -272,7 +272,7 @@ const getTaxes = async id => {
       expirationDate: '17/02/2020',
       paymentsExpired: 0,
       lastPaymentDate: '18/12/2019',
-      status: 'enTermino',
+      status: 'porVencer',
     },
     {
       name: 'Monotributo',
@@ -280,7 +280,7 @@ const getTaxes = async id => {
       expirationDate: '20/02/2020',
       paymentsExpired: 0,
       lastPaymentDate: '19/01/2020',
-      status: 'porVencer',
+      status: 'enTermino',
     },
   ];
   return taxes;
